@@ -1,5 +1,5 @@
 # The-Reality
-![The Reality](./137407724062026.jpg)
+![The Reality](./icon_512x512.jpg)
 
 Website: [https://skyro7777777.github.io/The-Reality/](https://skyro7777777.github.io/The-Reality/)
 
