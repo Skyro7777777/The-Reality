@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Reality — A Journey Through Science and Religion Book Coming Soon to Market in 25+ Languages</title>
+  <meta name="description"
+    content="A journey through science and religion to discover the truth about life and its true path">
+  <meta name="google-site-verification" content="kBEFGy-cvCZgXx6XTKv9QIC5xgq-J19iuMjUi6W13lY" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Brandon Grotesque';
+      src: url('BrandonGrotesque-Regular.woff') format('woff'),
+        url('BrandonGrotesque-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #030108;
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    ::selection {
+      background: rgba(168, 85, 247, 0.3);
+      color: #e9d5ff;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #050208;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(168, 85, 247, 0.3);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(168, 85, 247, 0.5);
+    }
+
+    /* ─── Particle Canvas ─── */
+    #particle-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: transparent;
+    }
+
+    /* ─── Floating Orbs ─── */
+    .floating-orbs {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .orb-1 {
+      top: 25%;
+      left: -8rem;
+      width: 24rem;
+      height: 24rem;
+      background: rgba(147, 51, 234, 0.04);
+      filter: blur(100px);
+      animation: float1 20s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      bottom: 25%;
+      right: -8rem;
+      width: 20rem;
+      height: 20rem;
+      background: rgba(6, 182, 212, 0.04);
+      filter: blur(100px);
+      animation: float2 25s ease-in-out infinite;
+    }
+
+    .orb-3 {
+      top: 66%;
+      left: 33%;
+      width: 16rem;
+      height: 16rem;
+      background: rgba(236, 72, 153, 0.03);
+      filter: blur(80px);
+      animation: float3 18s ease-in-out infinite;
+    }
+
+    .orb-4 {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: rgba(88, 28, 135, 0.03);
+      filter: blur(120px);
+    }
+
+    @keyframes float1 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      25% {
+        transform: translate(40px, -30px) scale(1.05);
+      }
+
+      50% {
+        transform: translate(-20px, 20px) scale(0.95);
+      }
+
+      75% {
+        transform: translate(30px, 40px) scale(1.02);
+      }
+    }
+
+    @keyframes float2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      25% {
+        transform: translate(-50px, 30px) scale(0.95);
+      }
+
+      50% {
+        transform: translate(30px, -20px) scale(1.05);
+      }
+
+      75% {
+        transform: translate(-30px, -40px) scale(1);
+      }
+    }
+
+    @keyframes float3 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(40px, 40px) scale(1.03);
+      }
+
+      66% {
+        transform: translate(-40px, -20px) scale(0.97);
+      }
+    }
+
+    /* ─── Scroll Progress Bar ─── */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      height: 2px;
+    }
+
+    .scroll-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #a855f7, #06b6d4, #ec4899);
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.5), 0 0 20px rgba(6, 182, 212, 0.3);
+      transition: width 150ms ease-out;
+    }
+
+    /* ─── Nav ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .nav-brand {
+      color: #d8b4fe;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-shadow: 0 0 7px rgba(216, 180, 254, 0.9), 0 0 10px rgba(216, 180, 254, 0.72), 0 0 21px rgba(216, 180, 254, 0.54), 0 0 42px rgba(216, 180, 254, 0.45), 0 0 82px rgba(216, 180, 254, 0.45);
+      animation: neonPulse 3s ease-in-out infinite alternate;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      color: #9ca3af;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: color 0.3s;
+      display: none;
+    }
+
+    @media (min-width: 640px) {
+      .nav-links a {
+        display: inline;
+      }
+    }
+
+    .nav-links a:hover {
+      color: #c4b5fd;
+    }
+
+    .btn-notify-nav {
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      border-radius: 9999px;
+      color: #c4b5fd;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .btn-notify-nav:hover {
+      background: rgba(168, 85, 247, 0.1);
+      border-color: rgba(168, 85, 247, 0.6);
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.15);
+      color: #d8b4fe;
+    }
+
+    /* ─── Neon Pulse Animation ─── */
+    @keyframes neonPulse {
+      0% {
+        filter: brightness(1);
+      }
+
+      50% {
+        filter: brightness(1.2);
+      }
+
+      100% {
+        filter: brightness(0.9);
+      }
+    }
+
+    /* ─── Hero Section ─── */
+    .hero {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 5rem 1rem 0;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 56rem;
+    }
+
+    .hero-coming {
+      font-size: 0.75rem;
+      letter-spacing: 0.5em;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeInUp 1s 0.5s forwards;
+    }
+
+    .hero-title {
+      margin-bottom: 1.5rem;
+      line-height: 1;
+    }
+
+    /* ─── THE REALITY Glow - Dual Layer Approach ─── */
+    .hero-title-text {
+      position: relative;
+      display: block;
+      font-family: 'Brandon Grotesque', 'Inter', sans-serif;
+      font-weight: 400 !important;
+      line-height: 1;
+    }
+
+    .hero-title-text.the {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+    }
+
+    .hero-title-text.reality {
+      font-size: clamp(4rem, 10vw, 10rem);
+      margin-top: 0.5rem;
+    }
+
+    /* Glow layer - blurred duplicate behind */
+    .hero-glow-layer {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Brandon Grotesque', 'Inter', sans-serif;
+      font-weight: 400 !important;
+      line-height: 1;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-glow-layer.the-glow {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      color: #fff;
+      filter: blur(25px);
+      opacity: 0.55;
+      text-shadow:
+        0 0 20px rgba(255, 255, 255, 0.72),
+        0 0 40px rgba(255, 255, 255, 0.54),
+        0 0 80px rgba(255, 255, 255, 0.36),
+        0 0 120px rgba(255, 255, 255, 0.27);
+      animation: heroGlowPulse 4s ease-in-out infinite alternate;
+    }
+
+    .hero-glow-layer.reality-glow {
+      font-size: clamp(4rem, 10vw, 10rem);
+      margin-top: 0.5rem;
+      color: #fff;
+      filter: blur(30px);
+      opacity: 0.59;
+      text-shadow:
+        0 0 25px rgba(255, 255, 255, 0.81),
+        0 0 50px rgba(255, 255, 255, 0.63),
+        0 0 100px rgba(255, 255, 255, 0.45),
+        0 0 150px rgba(255, 255, 255, 0.27);
+      animation: heroGlowPulse 4s ease-in-out infinite alternate-reverse;
+    }
+
+    /* Foreground text - with strong glow shadows */
+    .hero-title-text.the {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      text-shadow:
+        0 0 7px rgba(255, 255, 255, 0.9),
+        0 0 10px rgba(255, 255, 255, 0.72),
+        0 0 21px rgba(255, 255, 255, 0.54),
+        0 0 42px rgba(255, 255, 255, 0.36),
+        0 0 82px rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-title-text.reality {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      text-shadow:
+        0 0 7px rgba(255, 255, 255, 0.9),
+        0 0 10px rgba(255, 255, 255, 0.72),
+        0 0 21px rgba(255, 255, 255, 0.54),
+        0 0 42px rgba(255, 255, 255, 0.36),
+        0 0 82px rgba(255, 255, 255, 0.18),
+        0 0 120px rgba(255, 255, 255, 0.09);
+    }
+
+    @keyframes heroGlowPulse {
+      0% {
+        opacity: 0.45;
+        filter: blur(25px);
+      }
+
+      50% {
+        opacity: 0.72;
+        filter: blur(35px);
+      }
+
+      100% {
+        opacity: 0.5;
+        filter: blur(28px);
+      }
+    }
+
+    .hero-subtitle {
+      max-width: 32rem;
+      margin: 0 auto 2.5rem;
+      color: rgba(209, 213, 219, 0.8);
+      font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeInUp 1s 1.2s forwards;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s 1.5s forwards;
+    }
+
+    @media (min-width: 640px) {
+      .hero-buttons {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      border-radius: 9999px;
+      background: linear-gradient(to right, #0a0a0a, #9333ea);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 10px 15px -3px rgba(168, 85, 247, 0.25);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 10px 15px -3px rgba(168, 85, 247, 0.4);
+      transform: scale(1.05);
+    }
+
+    .btn-primary span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #0891b2, #9333ea);
+      opacity: 0;
+      transition: opacity 0.5s;
+      border-radius: 9999px;
+    }
+
+    .btn-primary:hover::after {
+      opacity: 1;
+    }
+
+    .btn-secondary {
+      padding: 0.875rem 2rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.7);
+      background: transparent;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(168, 85, 247, 0.5);
+      color: #c4b5fd;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.1);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: scrollBounce 2.5s ease-in-out infinite;
+    }
+
+    .scroll-indicator span {
+      font-size: 10px;
+      color: #4b5563;
+      letter-spacing: 0.3em;
+    }
+
+    .scroll-indicator svg {
+      color: #4b5563;
+    }
+
+    @keyframes scrollBounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(12px);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ─── Sections ─── */
+    .reveal-section {
+      position: relative;
+      z-index: 10;
+      transition: all 1s ease-out;
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+
+    .reveal-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Neon Text Utility ─── */
+    .neon-purple {
+      color: #d8b4fe;
+      text-shadow: 0 0 7px rgba(216, 180, 254, 0.9), 0 0 10px rgba(216, 180, 254, 0.72), 0 0 21px rgba(216, 180, 254, 0.54), 0 0 42px rgba(216, 180, 254, 0.45), 0 0 82px rgba(216, 180, 254, 0.45);
+      animation: neonPulse 3s ease-in-out infinite alternate;
+    }
+
+    .neon-cyan {
+      color: #67e8f9;
+      text-shadow: 0 0 7px rgba(103, 232, 249, 0.9), 0 0 10px rgba(103, 232, 249, 0.72), 0 0 21px rgba(103, 232, 249, 0.54), 0 0 42px rgba(103, 232, 249, 0.45), 0 0 82px rgba(103, 232, 249, 0.45);
+      animation: neonPulse 3s ease-in-out infinite alternate;
+    }
+
+    .neon-gold {
+      color: #fde68a;
+      text-shadow: 0 0 7px rgba(253, 230, 138, 0.9), 0 0 10px rgba(253, 230, 138, 0.72), 0 0 21px rgba(253, 230, 138, 0.54), 0 0 42px rgba(253, 230, 138, 0.45), 0 0 82px rgba(253, 230, 138, 0.45);
+      animation: neonPulse 3s ease-in-out infinite alternate;
+    }
+
+    .neon-pink {
+      color: #f9a8d4;
+      text-shadow: 0 0 7px rgba(249, 168, 212, 0.9), 0 0 10px rgba(249, 168, 212, 0.72), 0 0 21px rgba(249, 168, 212, 0.54), 0 0 42px rgba(249, 168, 212, 0.45), 0 0 82px rgba(249, 168, 212, 0.45);
+      animation: neonPulse 3s ease-in-out infinite alternate;
+    }
+
+    .neon-green {
+      color: #6ee7b7;
+      text-shadow: 0 0 7px rgba(110, 231, 183, 0.9), 0 0 10px rgba(110, 231, 183, 0.72), 0 0 21px rgba(110, 231, 183, 0.54), 0 0 42px rgba(110, 231, 183, 0.45), 0 0 82px rgba(110, 231, 183, 0.45);
+      animation: neonPulse 3s ease-in-out infinite alternate;
+    }
+
+    .neon-static-purple {
+      color: #d8b4fe;
+      text-shadow: 0 0 8px rgba(216, 180, 254, 0.45);
+    }
+
+    .neon-static-cyan {
+      color: #67e8f9;
+      text-shadow: 0 0 8px rgba(103, 232, 249, 0.45);
+    }
+
+    .neon-static-gold {
+      color: #fde68a;
+      text-shadow: 0 0 8px rgba(253, 230, 138, 0.45);
+    }
+
+    /* ─── All Text Glow ─── */
+    .hero-coming {
+      text-shadow: 0 0 6px rgba(107, 114, 128, 0.4);
+    }
+
+    .hero-subtitle {
+      text-shadow: 0 0 8px rgba(209, 213, 219, 0.35);
+    }
+
+    .nav-links a {
+      text-shadow: 0 0 6px rgba(156, 163, 175, 0.35);
+    }
+
+    .btn-notify-nav {
+      text-shadow: 0 0 6px rgba(196, 181, 253, 0.35);
+    }
+
+    .btn-primary span {
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+    }
+
+    .btn-secondary {
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.25);
+    }
+
+    .book-text p.text-light {
+      text-shadow: 0 0 8px rgba(209, 213, 219, 0.3);
+    }
+
+    .book-text p.text-dim {
+      text-shadow: 0 0 6px rgba(156, 163, 175, 0.3);
+    }
+
+    .pillars-header h2 {
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+    }
+
+    .pillar-card p {
+      text-shadow: 0 0 6px rgba(156, 163, 175, 0.3);
+    }
+
+    .contents-header h2 {
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+    }
+
+    .contents-header p {
+      text-shadow: 0 0 6px rgba(107, 114, 128, 0.3);
+    }
+
+    .chapter-card h4 {
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.35);
+    }
+
+    .chapter-card p {
+      text-shadow: 0 0 5px rgba(156, 163, 175, 0.25);
+    }
+
+    .extra-card.epi .tag {
+      text-shadow: 0 0 6px rgba(52, 211, 153, 0.4);
+    }
+
+    .extra-card.app .tag {
+      text-shadow: 0 0 6px rgba(251, 191, 36, 0.4);
+    }
+
+    .extra-card h4 {
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+    }
+
+    .extra-card p {
+      text-shadow: 0 0 5px rgba(156, 163, 175, 0.25);
+    }
+
+    .author-inner h2 {
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+    }
+
+    .author-inner .subtitle {
+      text-shadow: 0 0 6px rgba(107, 114, 128, 0.3);
+    }
+
+    .author-quote-box p {
+      text-shadow: 0 0 8px rgba(209, 213, 219, 0.3);
+    }
+
+    .author-quote-box .quote-mark {
+      text-shadow: 0 0 6px rgba(168, 85, 247, 0.25);
+    }
+
+    footer .desc {
+      text-shadow: 0 0 5px rgba(107, 114, 128, 0.25);
+    }
+
+    footer .copy {
+      text-shadow: 0 0 4px rgba(75, 85, 99, 0.25);
+    }
+
+    footer .disclaimer {
+      text-shadow: 0 0 3px rgba(55, 65, 81, 0.2);
+    }
+
+    /* ─── Book Cover + About ─── */
+    .book-section {
+      padding: 6rem 1rem;
+    }
+
+    .book-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    @media (min-width: 1024px) {
+      .book-inner {
+        flex-direction: row;
+      }
+    }
+
+    .book-cover-wrap {
+      position: relative;
+      flex-shrink: 0;
+      transition: transform 0.5s;
+    }
+
+    .book-cover-wrap:hover {
+      transform: scale(1.04);
+    }
+
+    .book-cover-glow {
+      position: absolute;
+      inset: -1.5rem;
+      background: linear-gradient(to bottom right, rgba(168, 85, 247, 0.15), rgba(6, 182, 212, 0.1), rgba(236, 72, 153, 0.15));
+      border-radius: 1.5rem;
+      filter: blur(2rem);
+      transition: filter 0.7s;
+    }
+
+    .book-cover-wrap:hover .book-cover-glow {
+      filter: blur(3rem);
+    }
+
+    .book-cover-border {
+      position: absolute;
+      inset: -4px;
+      border-radius: 0.75rem;
+      background: linear-gradient(to bottom right, rgba(168, 85, 247, 0.2), rgba(6, 182, 212, 0.2), rgba(236, 72, 153, 0.2));
+    }
+
+    .book-cover-wrap img {
+      position: relative;
+      width: 15rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 25px 50px rgba(168, 85, 247, 0.15), 0 0 80px rgba(6, 182, 212, 0.08);
+    }
+
+    @media (min-width: 640px) {
+      .book-cover-wrap img {
+        width: 18rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .book-cover-wrap img {
+        width: 20rem;
+      }
+    }
+
+    .book-text {
+      flex: 1;
+      text-align: center;
+    }
+
+    @media (min-width: 1024px) {
+      .book-text {
+        text-align: left;
+      }
+    }
+
+    .book-text h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    .book-text p {
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .book-text p.text-dim {
+      color: #9ca3af;
+    }
+
+    .book-text p.text-light {
+      color: rgba(209, 213, 219, 0.9);
+    }
+
+    /* ─── Pillars Section ─── */
+    .pillars-section {
+      padding: 6rem 1rem;
+    }
+
+    .pillars-inner {
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+
+    .pillars-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .pillars-header .label {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .pillars-header h2 {
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .pillars-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .pillars-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    .pillar-card {
+      padding: 2rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.015);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.5s;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .pillar-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pillar-card:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .pillar-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pillar-icon svg {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    .pillar-icon.cyan {
+      background: rgba(6, 182, 212, 0.1);
+      color: #22d3ee;
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+    }
+
+    .pillar-icon.purple {
+      background: rgba(168, 85, 247, 0.1);
+      color: #c084fc;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+    }
+
+    .pillar-icon.gold {
+      background: rgba(245, 158, 11, 0.1);
+      color: #fbbf24;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+    }
+
+    .pillar-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .pillar-card p {
+      color: #9ca3af;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* ─── Contents Section ─── */
+    .contents-section {
+      padding: 6rem 1rem;
+    }
+
+    .contents-inner {
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+
+    .contents-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .contents-header .label {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .contents-header h2 {
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .contents-header p {
+      color: #6b7280;
+      max-width: 32rem;
+      margin: 0 auto;
+    }
+
+    /* Part Label */
+    .part-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 0 2rem;
+    }
+
+    .part-label .line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1));
+    }
+
+    .part-label .line:last-child {
+      background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.1));
+    }
+
+    .part-label span {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Chapter Grid */
+    .chapter-grid {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .chapter-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .chapter-card {
+      position: relative;
+      padding: 1.25rem 1.25rem 1.25rem 1.75rem;
+      border-radius: 0.75rem;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      cursor: default;
+      transition: all 0.5s;
+      opacity: 0;
+      transform: translateY(30px) scale(0.97);
+    }
+
+    .chapter-card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .chapter-card:hover {
+      transform: scale(1.02) !important;
+    }
+
+    .chapter-card.purple {
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      background: rgba(168, 85, 247, 0.08);
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.05);
+    }
+
+    .chapter-card.purple:hover {
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.15);
+      border-color: rgba(168, 85, 247, 0.4);
+    }
+
+    .chapter-card.cyan {
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      background: rgba(6, 182, 212, 0.08);
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.05);
+    }
+
+    .chapter-card.cyan:hover {
+      box-shadow: 0 0 30px rgba(6, 182, 212, 0.15);
+      border-color: rgba(6, 182, 212, 0.4);
+    }
+
+    .chapter-card.gold {
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      background: rgba(245, 158, 11, 0.08);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.05);
+    }
+
+    .chapter-card.gold:hover {
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
+    .chapter-card.pink {
+      border: 1px solid rgba(236, 72, 153, 0.2);
+      background: rgba(236, 72, 153, 0.08);
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.05);
+    }
+
+    .chapter-card.pink:hover {
+      box-shadow: 0 0 30px rgba(236, 72, 153, 0.15);
+      border-color: rgba(236, 72, 153, 0.4);
+    }
+
+    .chapter-card.green {
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      background: rgba(16, 185, 129, 0.08);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.05);
+    }
+
+    .chapter-card.green:hover {
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    .chapter-number {
+      position: absolute;
+      top: -0.75rem;
+      left: -0.75rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .chapter-number.purple {
+      background: rgba(168, 85, 247, 0.08);
+      border: 1px solid rgba(168, 85, 247, 0.33);
+      color: #c084fc;
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.19);
+    }
+
+    .chapter-number.cyan {
+      background: rgba(6, 182, 212, 0.08);
+      border: 1px solid rgba(6, 182, 212, 0.33);
+      color: #22d3ee;
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.19);
+    }
+
+    .chapter-number.gold {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.33);
+      color: #fbbf24;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.19);
+    }
+
+    .chapter-number.pink {
+      background: rgba(236, 72, 153, 0.08);
+      border: 1px solid rgba(236, 72, 153, 0.33);
+      color: #f472b6;
+      box-shadow: 0 0 12px rgba(236, 72, 153, 0.19);
+    }
+
+    .chapter-number.green {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.33);
+      color: #34d399;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.19);
+    }
+
+    .chapter-card h4 {
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 0.375rem;
+      transition: color 0.3s;
+    }
+
+    .chapter-card:hover h4 {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .chapter-card p {
+      color: #9ca3af;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    /* Epilogue & Appendix */
+    .extra-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .extra-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .extra-card {
+      position: relative;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .extra-card.epi {
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      background: rgba(16, 185, 129, 0.05);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.05);
+    }
+
+    .extra-card.app {
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      background: rgba(245, 158, 11, 0.05);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.05);
+    }
+
+    .extra-card .tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+    }
+
+    .extra-card.epi .tag {
+      color: #34d399;
+    }
+
+    .extra-card.app .tag {
+      color: #fbbf24;
+    }
+
+    .extra-card h4 {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-top: 0.5rem;
+    }
+
+    .extra-card p {
+      color: #9ca3af;
+      font-size: 0.875rem;
+      margin-top: 0.375rem;
+    }
+
+    /* ─── Author Section ─── */
+    .author-section {
+      padding: 6rem 1rem;
+    }
+
+    .author-inner {
+      max-width: 48rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .author-inner .label {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .author-inner h2 {
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .author-inner .subtitle {
+      color: #6b7280;
+      font-style: italic;
+      margin-bottom: 2.5rem;
+    }
+
+    .author-quote-box {
+      position: relative;
+      padding: 2rem;
+      border-radius: 1rem;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(168, 85, 247, 0.15);
+      background: rgba(168, 85, 247, 0.03);
+      box-shadow: 0 0 40px rgba(168, 85, 247, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    @media (min-width: 768px) {
+      .author-quote-box {
+        padding: 3rem;
+      }
+    }
+
+    .author-quote-box .quote-mark {
+      position: absolute;
+      font-size: 3rem;
+      color: rgba(168, 85, 247, 0.3);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .author-quote-box .quote-mark.open {
+      top: -1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .author-quote-box .quote-mark.close {
+      bottom: -1.25rem;
+      right: 2rem;
+    }
+
+    .author-quote-box p {
+      color: rgba(209, 213, 219, 0.9);
+      line-height: 1.8;
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .author-quote-box p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      position: relative;
+      z-index: 10;
+      margin-top: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 3rem 1rem;
+      background: rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    footer .brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    footer .desc {
+      color: #6b7280;
+      font-size: 0.875rem;
+      margin-bottom: 1.25rem;
+    }
+
+    footer .divider {
+      width: 6rem;
+      height: 1px;
+      margin: 0 auto 1.25rem;
+      background: linear-gradient(to right, transparent, rgba(168, 85, 247, 0.3), transparent);
+    }
+
+    footer .copy {
+      color: #4b5563;
+      font-size: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    footer .disclaimer {
+      color: #374151;
+      font-size: 10px;
+      margin-top: 0.25rem;
+    }
+
+    /* ─── Book Quotes Preview ─── */
+    .quotes-section {
+      padding: 6rem 1rem;
+    }
+
+    .quotes-inner {
+      max-width: 48rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quotes-inner .label {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .quotes-title {
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 3rem;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+    }
+
+    .quote-carousel {
+      position: relative;
+      min-height: 8rem;
+    }
+
+    .quote-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.8s ease;
+      pointer-events: none;
+    }
+
+    .quote-slide.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .quote-text {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      line-height: 1.9;
+      color: rgba(209, 213, 219, 0.9);
+      font-style: italic;
+      text-shadow: 0 0 8px rgba(209, 213, 219, 0.3);
+      max-width: 36rem;
+      margin: 0 auto;
+    }
+
+    .quote-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .quote-dots .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+      padding: 0;
+    }
+
+    .quote-dots .dot.active {
+      background: rgba(168, 85, 247, 0.7);
+      border-color: rgba(168, 85, 247, 0.8);
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+    }
+
+    .quote-dots .dot:hover {
+      border-color: rgba(168, 85, 247, 0.6);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Floating Orbs -->
+  <div class="floating-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress">
+    <div class="scroll-progress-bar" id="scroll-progress-bar" style="width:0%"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-brand">THE REALITY</div>
+    <div class="nav-links">
+      <a href="#contents">Contents</a>
+      <a href="#author">Author</a>
+      <a href="#quotes" class="btn-notify-nav">Preview</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-coming">Coming Soon</p>
+      <h1 class="hero-title">
+        <span class="hero-title-text the" style="position:relative;">
+          <span class="hero-glow-layer the-glow" aria-hidden="true">THE</span>
+          THE
+        </span>
+        <span class="hero-title-text reality" style="position:relative;">
+          <span class="hero-glow-layer reality-glow" aria-hidden="true">REALITY</span>
+          REALITY
+        </span>
+      </h1>
+      <p class="hero-subtitle">A journey through science and religion to discover the truth about life and its true path
+      </p>
+      <div class="hero-buttons">
+        <a href="#explore" class="btn-primary"><span>Explore The Journey</span></a>
+        <a href="#quotes" class="btn-secondary">Read a Preview</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>SCROLL</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 5v14M19 12l-7 7-7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Book Cover + About -->
+  <section class="reveal-section book-section" id="explore">
+    <div class="book-inner">
+      <div class="book-cover-wrap">
+        <div class="book-cover-glow"></div>
+        <div class="book-cover-border"></div>
+        <img src="137407724062026.jpg" alt="The Reality Book Cover">
+      </div>
+      <div class="book-text">
+        <h2><span class="neon-cyan" style="font-size:clamp(1.5rem,4vw,2.25rem);font-weight:700;">Uncover Life's Ultimate
+            Truth</span></h2>
+        <p class="text-light">The Reality is a book that bridges the gap between science and religion in search of
+          life's true purpose.</p>
+        <p class="text-dim">This book embarks on examining the fundamental questions that have puzzled humanity for
+          centuries.</p>
+        <p class="text-dim">Through rigorous analysis of authenticscientific discoveries and religious traditions, this
+          book
+          offers a comprehensive roadmap to understanding the truth in spirituality, the nature of existence and our
+          place within it. It is going to be in 25+ languages so that everyone could read it to find ultimate reality.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Pillars -->
+  <section class="reveal-section pillars-section">
+    <div class="pillars-inner">
+      <div class="pillars-header">
+        <span class="label neon-gold" style="font-size:11px;letter-spacing:0.4em;text-transform:uppercase;">Core
+          Pillars</span>
+        <h2>The Foundation of Inquiry</h2>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card" data-delay="0">
+          <div class="pillar-icon cyan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              <path d="M2 12h20" />
+            </svg>
+          </div>
+          <h3 class="neon-static-cyan">Scientific Foundation</h3>
+          <p>Examining the universe's creation, its purpose and probability, reality of existence of divine and what is
+            beyond</p>
+        </div>
+        <div class="pillar-card" data-delay="1">
+          <div class="pillar-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+          </div>
+          <h3 class="neon-static-purple">Religious Perspectives</h3>
+          <p>Comprehensive analysis of major world faiths, their claims and truth seeking on them.</p>
+        </div>
+        <div class="pillar-card" data-delay="2">
+          <div class="pillar-icon gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
+          </div>
+          <h3 class="neon-static-gold">Comprehensive Journey</h3>
+          <p>A complete roadmap from questioning to discovery, guided by authenticevidence and reason</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book Contents -->
+  <section class="reveal-section contents-section" id="contents">
+    <div class="contents-inner">
+      <div class="contents-header">
+        <span class="label neon-purple" style="font-size:11px;letter-spacing:0.4em;text-transform:uppercase;">Book
+          Contents</span>
+        <h2>Explore the book's structure</h2>
+        <p>Discover the profound insights waiting for you in each section</p>
+      </div>
+
+      <!-- Part I -->
+      <div class="part-label">
+        <div class="line"></div>
+        <span class="neon-purple">Part I: The Foundation of Belief</span>
+        <div class="line"></div>
+      </div>
+      <div class="chapter-grid">
+        <div class="chapter-card purple" data-delay="0">
+          <div class="chapter-number purple">1</div>
+          <h4>The Inheritance of Faith</h4>
+          <p>The starting of book</p>
+        </div>
+        <div class="chapter-card purple" data-delay="1">
+          <div class="chapter-number purple">2</div>
+          <h4>The Universe — A Grand Design</h4>
+          <p>Scientific evidence pointing to an intelligent cosmic design</p>
+        </div>
+        <div class="chapter-card purple" data-delay="2">
+          <div class="chapter-number purple">3</div>
+          <h4>The Question of God's Existence</h4>
+          <p>Scientific theories, arguments and brief analysis</p>
+        </div>
+        <div class="chapter-card purple" data-delay="3">
+          <div class="chapter-number purple">4</div>
+          <h4>The Need for Divine Guidance</h4>
+          <p>Humanity needs direction but is there a Compass?</p>
+        </div>
+      </div>
+
+      <!-- Part II -->
+      <div class="part-label">
+        <div class="line"></div>
+        <span class="neon-cyan">Part II: The Great Religious Survey</span>
+        <div class="line"></div>
+      </div>
+      <div class="chapter-grid">
+        <div class="chapter-card cyan" data-delay="0">
+          <div class="chapter-number cyan">5</div>
+          <h4>Hinduism — The Ancient Path</h4>
+          <p>Exploring the world's oldest living religion and its complex philosophy</p>
+        </div>
+        <div class="chapter-card cyan" data-delay="1">
+          <div class="chapter-number cyan">6</div>
+          <h4>Buddhism — The Path Without God</h4>
+          <p>Understanding a spiritual tradition focused on enlightenment rather than deity worship</p>
+        </div>
+        <div class="chapter-card cyan" data-delay="2">
+          <div class="chapter-number cyan">7</div>
+          <h4>Judaism — The First Monotheism</h4>
+          <p>Tracing the origins of belief in one God</p>
+        </div>
+        <div class="chapter-card cyan" data-delay="3">
+          <div class="chapter-number cyan">8</div>
+          <h4>Christianity — The World's Largest Religion</h4>
+          <p>Examining Christianity, its global impact and more</p>
+        </div>
+      </div>
+
+      <!-- Part III -->
+      <div class="part-label">
+        <div class="line"></div>
+        <span class="neon-gold">Part III: The Remaining Contenders</span>
+        <div class="line"></div>
+      </div>
+      <div class="chapter-grid">
+        <div class="chapter-card gold" data-delay="0">
+          <div class="chapter-number gold">9</div>
+          <h4>Islam — The Final Revelation</h4>
+          <p>Understanding Islam and its foundation</p>
+        </div>
+        <div class="chapter-card gold" data-delay="1">
+          <div class="chapter-number gold">10</div>
+          <h4>This Holy Book and Science — A Perfect Alignment</h4>
+          <p>Scriptural references that align with modern scientific discoveries</p>
+        </div>
+        <div class="chapter-card gold" data-delay="2">
+          <div class="chapter-number gold">11</div>
+          <h4>The Remaining Religions</h4>
+          <p>Brief overview of other major spiritual traditions</p>
+        </div>
+        <div class="chapter-card gold" data-delay="3">
+          <div class="chapter-number gold">12</div>
+          <h4>The Preservation Test — Which Scripture Remains Unchanged?</h4>
+          <p>Examining textual integrity through history</p>
+        </div>
+      </div>
+
+      <!-- Part IV -->
+      <div class="part-label">
+        <div class="line"></div>
+        <span class="neon-pink">Part IV: The Elimination Process</span>
+        <div class="line"></div>
+      </div>
+      <div class="chapter-grid">
+        <div class="chapter-card pink" data-delay="0">
+          <div class="chapter-number pink">13</div>
+          <h4>The First Cut — Eliminating the Impossible</h4>
+          <p>Applying logical reasoning to rule out spiritual paths</p>
+        </div>
+        <div class="chapter-card pink" data-delay="1">
+          <div class="chapter-number pink">14</div>
+          <h4>Christianity on Trial</h4>
+          <p>Critical examination of Christian doctrines and more</p>
+        </div>
+        <div class="chapter-card pink" data-delay="2">
+          <div class="chapter-number pink">15</div>
+          <h4>Judaism on Trial</h4>
+          <p>Exploring theological claims, historical continuity and more</p>
+        </div>
+        <div class="chapter-card pink" data-delay="3">
+          <div class="chapter-number pink">16</div>
+          <h4>The Common Sense Test</h4>
+          <p>Approaching spiritual inquiry through practical reasoning and intuitive logic</p>
+        </div>
+      </div>
+
+      <!-- Part V -->
+      <div class="part-label">
+        <div class="line"></div>
+        <span class="neon-green">Part V: The Conclusion</span>
+        <div class="line"></div>
+      </div>
+      <div class="chapter-grid">
+        <div class="chapter-card green" data-delay="0">
+          <div class="chapter-number green">17</div>
+          <h4>Addressing Objections</h4>
+          <p>Common questions and concerns about spiritual truth we got to know</p>
+        </div>
+        <div class="chapter-card green" data-delay="1">
+          <div class="chapter-number green">18</div>
+          <h4>The Religion That Feels Most Accurate</h4>
+          <p>Synthesizing evidence and intuition to identify spiritual authenticity</p>
+        </div>
+        <div class="chapter-card green" data-delay="2">
+          <div class="chapter-number green">19</div>
+          <h4>A Message to Every Reader</h4>
+          <p>Personal encouragement for your own journey of life</p>
+        </div>
+        <div class="chapter-card green" data-delay="3">
+          <div class="chapter-number green">20</div>
+          <h4>The Final Word</h4>
+          <p>A conclusive statement on life's ultimate reality</p>
+        </div>
+      </div>
+
+      <!-- Epilogue & Appendix -->
+      <div class="extra-grid">
+        <div class="extra-card epi">
+          <div class="tag">EPI</div>
+          <h4>Epilogue: The Journey Continues</h4>
+          <p>Closing thoughts on applying these findings in daily life</p>
+        </div>
+        <div class="extra-card app">
+          <div class="tag">APP</div>
+          <h4>Appendices A–F</h4>
+          <p>Supplementary materials and detailed references</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author Section -->
+  <section class="reveal-section author-section" id="author">
+    <div class="author-inner">
+      <span class="label neon-gold" style="font-size:11px;letter-spacing:0.4em;text-transform:uppercase;">The
+        Author</span>
+      <h2>Wrote because of Honest Curiosity</h2>
+      <p class="subtitle">A Message From the Author</p>
+      <div class="author-quote-box">
+        <div class="quote-mark open">&ldquo;</div>
+        <p>In The Reality, I invite you on a journey to find answers to life's most fundamental questions. This book is
+          not merely an academic exercise but a personal quest for truth that has transformed my understanding of
+          existence. The book is going to be in 25+ languages so that everyone could read it to find ultimate reality.
+        </p>
+        <p>What makes this book unique is its approach: neither rejecting science nor dismissing spirituality, but
+          showing what is truth in spirituality and we are applying science on it to reveal a cohesive picture of
+          humanity's purpose. Through rigorous
+          research, and spiritual insight, I've discovered a path that feels increasingly authentic
+          in a world filled with competing claims.</p>
+        <p>I hope that as you read these pages, you'll find clarity, inspiration, and perhaps your own answers to
+          questions you've been asking. Whether you come from a religious background, a scientific perspective, or are
+          simply seeking truth, this book is written for you.</p>
+        <div class="quote-mark close">&rdquo;</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book Quotes Preview -->
+  <section class="reveal-section quotes-section" id="quotes">
+    <div class="quotes-inner">
+      <span class="label neon-gold" style="font-size:11px;letter-spacing:0.4em;text-transform:uppercase;">A
+        Preview</span>
+      <h2 class="quotes-title">Words From The Book</h2>
+      <div class="quote-carousel">
+        <div class="quote-slide active" data-index="0">
+          <p class="quote-text">"The universe didn't have to be this way. Every law of physics, every constant, every
+            force — they align with a precision that defies chance and whispers design."</p>
+        </div>
+        <div class="quote-slide" data-index="1">
+          <p class="quote-text">"The vast majority of religious people believe what they believe because they were born
+            into it. We inherit our faith like we inherit our Language — not by choice, but by circumstance. True
+            conviction begins only when we dare to Question what we were given."</p>
+        </div>
+        <div class="quote-slide" data-index="2">
+          <p class="quote-text">"Of the more than Four Thousand religions that human beings have created, which one — if
+            any — is actually True?"</p>
+        </div>
+        <div class="quote-slide" data-index="3">
+          <p class="quote-text">"Kalam Cosmological Argument:
+
+            1. Whatever begins to exist has a cause.
+            2. The universe began to exist.
+            3. Therefore, the universe has a cause.
+          </p>
+        </div>
+        <div class="quote-slide" data-index="4">
+          <p class="quote-text">"The claim all religions are equally true is logically incoherent — they make
+            contradictory claims about nature of God, the origin of universe, and
+            contradictory claims cannot all be true. Nor is this a book that treats all religions as equally false. The
+            claim that all religions are equally false is an article of faith, Not a Conclusion of Evidence."</p>
+        </div>
+      </div>
+      <div class="quote-dots">
+        <button class="dot active" data-index="0" onclick="goToQuote(0)"></button>
+        <button class="dot" data-index="1" onclick="goToQuote(1)"></button>
+        <button class="dot" data-index="2" onclick="goToQuote(2)"></button>
+        <button class="dot" data-index="3" onclick="goToQuote(3)"></button>
+        <button class="dot" data-index="4" onclick="goToQuote(4)"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="brand neon-static-purple">The Reality</span>
+    <p class="desc">Coming Soon to Market in 25+ Languages</p>
+    <div class="divider"></div>
+    <p class="copy">&copy; 2026 The Reality Book. All rights reserved.</p>
+    <p class="disclaimer">This website is for promotional purposes and does not represent the brief book content till
+      now.</p>
+  </footer>
+
+  <script>
+    // ─── Particle System ───
+    (function () {
+      const canvas = document.getElementById('particle-canvas');
+      const ctx = canvas.getContext('2d');
+      let w = 0, h = 0;
+      let scrollY = 0;
+      const mouse = { x: -1000, y: -1000 };
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+      window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+      const COUNT = 400;
+      const particles = [];
+      for (let i = 0; i < COUNT; i++) {
+        const angle = (i / COUNT) * Math.PI * 8 + Math.random() * 0.5;
+        const radius = 30 + Math.random() * 280;
+        particles.push({
+          x: Math.random() * (w || 1920),
+          y: Math.random() * (h || 1080),
+          baseX: Math.random() * (w || 1920),
+          baseY: Math.random() * (h || 1080),
+          size: Math.random() * 2.8 + 0.4,
+          hue: 260 + Math.random() * 80,
+          alpha: Math.random() * 0.5 + 0.2,
+          angle: angle,
+          radius: radius,
+          speed: Math.random() * 0.003 + 0.0008,
+          origAngle: angle,
+          origRadius: radius,
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1);
+        const scrollProgress = Math.min(scrollY / maxScroll, 1);
+        const centerX = w / 2;
+        const centerY = h / 2;
+        const now = Date.now();
+
+        // Ambient glow orbs
+        function drawOrb(x, y, r, hue, a) {
+          const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+          g.addColorStop(0, 'hsla(' + hue + ', 100%, 60%, ' + a + ')');
+          g.addColorStop(0.5, 'hsla(' + hue + ', 80%, 40%, ' + (a * 0.3) + ')');
+          g.addColorStop(1, 'transparent');
+          ctx.fillStyle = g;
+          ctx.fillRect(x - r, y - r, r * 2, r * 2);
+        }
+
+        drawOrb(centerX - 200, centerY - 100, 300, 280, 0.03 + scrollProgress * 0.02);
+        drawOrb(centerX + 250, centerY + 150, 250, 190, 0.025 + scrollProgress * 0.015);
+        drawOrb(centerX, centerY, 400, 320, 0.015);
+
+        const phase = scrollProgress;
+
+        for (let i = 0; i < COUNT; i++) {
+          const p = particles[i];
+
+          // Mouse influence
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const mouseForce = dist < 180 ? (180 - dist) / 180 * 0.5 : 0;
+
+          if (phase < 0.15) {
+            // Scattered floating
+            const drift = Math.sin(now * p.speed + i) * 0.4;
+            const driftY = Math.cos(now * p.speed * 1.3 + i) * 0.4;
+            p.x += (p.baseX - p.x) * 0.008 + drift;
+            p.y += (p.baseY - p.y) * 0.008 + driftY;
+            p.alpha = 0.25 + Math.sin(now * 0.001 + i * 0.5) * 0.15;
+            p.hue = 260 + Math.sin(now * 0.0005 + i * 0.1) * 50;
+          } else if (phase < 0.35) {
+            // Galaxy spiral morph
+            const t = (phase - 0.15) / 0.2;
+            const eased = t * t * (3 - 2 * t);
+            p.angle += p.speed * (1 + eased * 2);
+            const spiralX = centerX + Math.cos(p.angle + i * 0.015) * p.radius * (1 + i * 0.002);
+            const spiralY = centerY + Math.sin(p.angle + i * 0.015) * p.radius * 0.55 * (1 + i * 0.002);
+            p.x += (spiralX - p.x) * (0.015 + eased * 0.04);
+            p.y += (spiralY - p.y) * (0.015 + eased * 0.04);
+            p.alpha = 0.3 + eased * 0.5;
+            p.hue = 270 + eased * 50 + Math.sin(p.angle) * 20;
+          } else if (phase < 0.55) {
+            // DNA helix morph
+            const t = (phase - 0.35) / 0.2;
+            const eased = t * t * (3 - 2 * t);
+            const helixI = i / COUNT;
+            const helixAngle = helixI * Math.PI * 10 + now * 0.0015;
+            const strand = i % 2 === 0 ? 1 : -1;
+            const helixX = centerX + Math.cos(helixAngle) * 150 * strand;
+            const helixY = helixI * h * 1.8 - (scrollY * 0.3) % (h * 1.8) + h * 0.1;
+            p.x += (helixX - p.x) * (0.02 + eased * 0.05);
+            p.y += (helixY - p.y) * (0.02 + eased * 0.05);
+            p.alpha = 0.4 + eased * 0.4;
+            p.hue = strand === 1 ? 300 + eased * 40 : 180 + eased * 30;
+          } else if (phase < 0.75) {
+            // Constellation grid
+            const t = (phase - 0.55) / 0.2;
+            const eased = t * t * (3 - 2 * t);
+            const cols = 22;
+            const rows = Math.ceil(COUNT / cols);
+            const col = i % cols;
+            const row = Math.floor(i / cols);
+            const gridX = (col / cols) * w * 0.8 + w * 0.1 + Math.sin(row * 0.7 + now * 0.0008) * 25;
+            const gridY = (row / rows) * h * 0.8 + h * 0.1 + Math.cos(col * 0.7 + now * 0.001) * 25;
+            p.x += (gridX - p.x) * (0.015 + eased * 0.04);
+            p.y += (gridY - p.y) * (0.015 + eased * 0.04);
+            p.alpha = 0.35 + eased * 0.45;
+            p.hue = 200 + eased * 100;
+          } else {
+            // Expanding cosmos
+            const t = (phase - 0.75) / 0.25;
+            const eased = t * t;
+            p.angle += p.speed * 0.3;
+            const expandR = p.radius * (1 + eased * 4);
+            const exX = centerX + Math.cos(p.angle) * expandR;
+            const exY = centerY + Math.sin(p.angle) * expandR;
+            p.x += (exX - p.x) * 0.025;
+            p.y += (exY - p.y) * 0.025;
+            p.alpha = Math.max(0.05, 0.7 - eased * 0.6);
+            p.hue = 260 + eased * 120;
+          }
+
+          // Mouse repulsion
+          if (mouseForce > 0) {
+            p.x -= dx * mouseForce * 0.025;
+            p.y -= dy * mouseForce * 0.025;
+          }
+
+          // Draw glow layer
+          if (p.alpha > 0.15) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size * 4, 0, Math.PI * 2);
+            ctx.fillStyle = 'hsla(' + p.hue + ', 100%, 65%, ' + (p.alpha * 0.08) + ')';
+            ctx.fill();
+          }
+
+          // Draw particle core
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = 'hsla(' + p.hue + ', 100%, 75%, ' + p.alpha + ')';
+          ctx.fill();
+
+          // Connect nearby particles
+          for (let j = i + 1; j < Math.min(i + 12, COUNT); j++) {
+            const p2 = particles[j];
+            const ddx = p.x - p2.x;
+            const ddy = p.y - p2.y;
+            const dd = ddx * ddx + ddy * ddy;
+            if (dd < 8000) {
+              const lineAlpha = (1 - dd / 8000) * 0.12 * Math.min(p.alpha, p2.alpha);
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = 'hsla(' + ((p.hue + p2.hue) * 0.5) + ', 80%, 65%, ' + lineAlpha + ')';
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    // ─── Scroll Progress Bar ───
+    window.addEventListener('scroll', () => {
+      const max = document.body.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? (window.scrollY / max) * 100 : 0;
+      document.getElementById('scroll-progress-bar').style.width = progress + '%';
+    }, { passive: true });
+
+    // ─── Intersection Observer for Section Reveals ───
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal-section').forEach(el => revealObserver.observe(el));
+
+    // ─── Intersection Observer for Pillar Cards ───
+    const pillarObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = parseInt(entry.target.dataset.delay || 0) * 150;
+          setTimeout(() => entry.target.classList.add('visible'), delay);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.pillar-card').forEach(el => pillarObserver.observe(el));
+
+    // ─── Intersection Observer for Chapter Cards ───
+    const chapterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = parseInt(entry.target.dataset.delay || 0) * 70;
+          setTimeout(() => entry.target.classList.add('visible'), delay);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.chapter-card').forEach(el => chapterObserver.observe(el));
+
+    // ─── Quote Carousel ───
+    let currentQuote = 0;
+    const quoteSlides = document.querySelectorAll('.quote-slide');
+    const quoteDots = document.querySelectorAll('.dot');
+
+    function goToQuote(index) {
+      quoteSlides[currentQuote].classList.remove('active');
+      quoteDots[currentQuote].classList.remove('active');
+      currentQuote = index;
+      quoteSlides[currentQuote].classList.add('active');
+      quoteDots[currentQuote].classList.add('active');
+    }
+
+    setInterval(() => {
+      goToQuote((currentQuote + 1) % quoteSlides.length);
+    }, 6000);
+  </script>
+</body>
+
+</html>
